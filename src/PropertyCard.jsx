@@ -1,32 +1,16 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemAvatar from '@mui/material/ListItemAvatar'
 import Avatar from '@mui/material/Avatar'
-import ImageIcon from '@mui/icons-material/Image'
 import WorkIcon from '@mui/icons-material/Work'
-import BeachAccessIcon from '@mui/icons-material/BeachAccess'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
-import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined'
-import IconButton from '@mui/material/IconButton'
 import Container from '@mui/material/Container'
-import { pink } from '@mui/material/colors'
 import Typography from '@mui/material/Typography'
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-)
+
 export const PropertyCard = ({ property, closeView }) => {
   const formatCurrency = (value) => `£${Math.floor(value).toLocaleString()}`
   return (

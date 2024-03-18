@@ -4,22 +4,19 @@ import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import MenuItem from '@mui/material/MenuItem'
 import Link from '@mui/material/Link'
-import Grid from '@mui/material/Grid'
+
 import Box from '@mui/material/Box'
 import { useForm, FormProvider } from 'react-hook-form'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { sortByProfitability } from './calculate'
-import { FormControl, Icon } from '@mui/material'
+import { FormControl } from '@mui/material'
 import ResultsTable from './table'
 import { InputLabel } from '@mui/material'
 import { Select } from '@mui/material'
 import { NestedInput } from './NestedInput'
-import { InputTable } from './InputTable'
-import AddBoxIcon from '@mui/icons-material/AddBox'
-import IconButton from '@mui/material/IconButton'
-import TableCell from '@mui/material/TableCell'
+
 import HouseRoundedIcon from '@mui/icons-material/HouseRounded'
 import Avatar from '@mui/material/Avatar'
 import { DrawerSlider } from './DrawerSlider'
@@ -152,17 +149,17 @@ export default function App() {
     setProperties((prevResults) => [...prevResults, newProperty])
     methods.setValue('propertyName', `Property ${properties.length + 2}`)
   }
+
   React.useEffect(() => {
+    const onSubmit = (e) => {
+      setResults(sortByProfitability(properties))
+    }
     methods.handleSubmit(onSubmit)()
-  }, [properties])
+  }, [properties, methods, setResults])
 
   // const handleSubmit = (e) => {
   //   methods.handleSubmit(onSubmit)()
   // }
-
-  const onSubmit = (e) => {
-    setResults(sortByProfitability(properties))
-  }
 
   const onDelete = (ids) => {
     setResults((prevResults) =>
