@@ -1,7 +1,6 @@
 function calculateStampDuty(amount) {
   // Stamp duty bands and rates
   const bands = [
-    
     { upperLimit: 250000, rate: 0.03 },
     { upperLimit: 925000, rate: 0.08 },
     { upperLimit: 1500000, rate: 0.13 },
@@ -37,11 +36,11 @@ function calculateStampDuty(amount) {
     })
   }
 
-  // Format the result
-  const formattedTax = tax.toLocaleString('en-GB', {
-    style: 'currency',
-    currency: 'GBP',
-  })
+  // // Format the result
+  // const formattedTax = tax.toLocaleString('en-GB', {
+  //   style: 'currency',
+  //   currency: 'GBP',
+  // })
 
   // Calculate effective rate
   const effectiveRate = (tax / amount) * 100

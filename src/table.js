@@ -176,7 +176,7 @@ export default function ResultsTable({ results, handleDelete, handleExpand }) {
   const [orderBy, setOrderBy] = useState('calories')
   const [selected, setSelected] = useState([])
   const [page, setPage] = useState(0)
-  const [dense, setDense] = useState(false)
+
   const [rowsPerPage, setRowsPerPage] = useState(25)
 
   const handleRequestSort = (event, property) => {
@@ -226,10 +226,6 @@ export default function ResultsTable({ results, handleDelete, handleExpand }) {
     setPage(0)
   }
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked)
-  }
-
   const isSelected = (id) => selected.indexOf(id) !== -1
 
   const emptyRows =
@@ -241,7 +237,7 @@ export default function ResultsTable({ results, handleDelete, handleExpand }) {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [order, orderBy, page, rowsPerPage, results]
+    [order, orderBy, page, rowsPerPage, rows]
   )
 
   return (
@@ -368,7 +364,7 @@ export default function ResultsTable({ results, handleDelete, handleExpand }) {
               {emptyRows > 0 && (
                 <TableRow
                   style={{
-                    height: (dense ? 33 : 53) * emptyRows,
+                    height: 33,
                   }}
                 >
                   <TableCell colSpan={6} />
