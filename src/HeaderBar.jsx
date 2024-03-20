@@ -25,7 +25,11 @@ export default function HeaderBar({ setOpen }) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Buy to let comparison calculator
           </Typography>
-          <Button color="inherit" onClick={() => setOpen(true)}>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={() => setOpen(true)}
+          >
             Add property
           </Button>
         </Toolbar>

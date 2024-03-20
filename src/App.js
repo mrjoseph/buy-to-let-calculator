@@ -262,13 +262,30 @@ export default function App() {
 
           {expandView.id ? (
             <PropertyCard property={expandView} closeView={closeView} />
-          ) : (
+          ) : results.length > 0 ? (
             <Container component="main" maxWidth="xl">
               <ResultsTable
                 results={results}
                 handleDelete={onDelete}
                 handleExpand={handleExpand}
               />
+            </Container>
+          ) : (
+            <Container
+              component="main"
+              maxWidth="xs"
+              sx={{
+                pt: 12,
+                textAlign: 'center',
+              }}
+            >
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={() => setOpen(true)}
+              >
+                Add property
+              </Button>
             </Container>
           )}
         </Box>
