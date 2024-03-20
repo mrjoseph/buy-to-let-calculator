@@ -7,10 +7,10 @@ export const useAppState = () => {
   useEffect(() => {
     const results = JSON.parse(localStorage.getItem('results'))
     const properties = JSON.parse(localStorage.getItem('properties'))
-    if (properties.length > 0) {
+    if (properties?.length > 0) {
       setProperties(properties)
     }
-    if (results.length > 0) {
+    if (results?.length > 0) {
       setResults(results)
     }
   }, [])

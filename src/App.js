@@ -238,7 +238,7 @@ export default function App() {
                         sx={{ mt: 3, mb: 2 }}
                         onClick={addAnotherProperty}
                       >
-                        Add {properties.length > 0 && properties.length}
+                        Add {properties?.length > 0 && properties?.length}
                       </Button>
                       {/* <Button
                     size="small"
