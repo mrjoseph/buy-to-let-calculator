@@ -2,7 +2,7 @@ import * as React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
-import MenuItem from '@mui/material/MenuItem'
+
 import Link from '@mui/material/Link'
 
 import Box from '@mui/material/Box'
@@ -11,10 +11,9 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { sortByProfitability } from './calculate'
-import { FormControl } from '@mui/material'
+
 import ResultsTable from './table'
-import { InputLabel } from '@mui/material'
-import { Select } from '@mui/material'
+
 import { NestedInput } from './NestedInput'
 
 import HouseRoundedIcon from '@mui/icons-material/HouseRounded'
@@ -72,10 +71,10 @@ export default function App() {
   })
 
   const { watch, setValue } = methods
-  const [age, setAge] = React.useState('repayment')
-  const handleChange = (event) => {
-    setAge(event.target.value)
-  }
+  // const [age, setAge] = React.useState('repayment')
+  // const handleChange = (event) => {
+  //   setAge(event.target.value)
+  // }
   const propertyValue = watch('propertyValue')
   const deposit = watch('deposit')
   React.useEffect(() => {
