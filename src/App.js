@@ -82,32 +82,55 @@ export default function App() {
     const loan = propertyValue - deposit
     setValue('loan', loan)
   }, [deposit, propertyValue, setValue])
+
+  const createSelectOptions = (start, end) => {
+    const options = []
+    for (let i = start; i <= end; i++) {
+      options.push({ value: i, label: i })
+    }
+    return options
+  }
   const inputs = [
     {
       name: 'propertyName',
       text: 'Property Name',
       type: 'text',
       inputMode: 'text',
+      component: 'input',
+      required: 'This field is required',
     },
     {
       name: 'url',
       text: 'URL',
       type: 'text',
       inputMode: 'text',
+      component: 'input',
+      required: 'This field is required',
     },
     {
       name: 'propertyValue',
       text: 'Value',
-      type: 'text',
-      inputMode: 'text',
+      type: 'number',
+      inputMode: 'number',
+      component: 'input',
+      required: 'This field is required',
     },
-    { name: 'deposit', text: 'Deposit', type: 'text', inputMode: 'text' },
+    {
+      name: 'deposit',
+      text: 'Deposit',
+      type: 'number',
+      inputMode: 'number',
+      component: 'input',
+      required: 'This field is required',
+    },
     {
       name: 'loan',
       text: 'Loan',
       type: 'text',
       inputMode: 'text',
       disabled: true,
+      component: 'input',
+      required: 'This field is required',
     },
 
     {
@@ -115,51 +138,74 @@ export default function App() {
       text: 'Monthly Operating Costs',
       type: 'number',
       inputMode: 'numeric',
+      component: 'input',
+      required: 'This field is required',
     },
     {
       name: 'monthlyRentalIncome',
       text: 'Monthly Rental Income',
       type: 'number',
       inputMode: 'numeric',
+      component: 'input',
+      required: 'This field is required',
     },
     {
       name: 'loanInterest',
       text: 'Loan Interest',
       type: 'number',
       inputMode: 'numeric',
+      component: 'input',
+      required: 'This field is required',
     },
     {
       name: 'repaymentPeriod',
       text: 'Repayment Period',
-      type: 'number',
-      inputMode: 'numeric',
+      type: 'text',
+      inputMode: 'text',
+      component: 'select',
+      required: 'This field is required',
+      options: createSelectOptions(1, 30),
     },
     {
       name: 'mortgageTerm',
       text: 'Mortgage term',
       type: 'number',
       inputMode: 'numeric',
+      component: 'input',
+      required: 'This field is required',
+    },
+    {
+      name: 'repaymentType',
+      text: 'Repayment Type',
+      type: 'text',
+      inputMode: 'text',
+      component: 'select',
+      required: 'This field is required',
+      options: [
+        { value: 'interestOnly', label: 'Interest only' },
+        { value: 'repayment', label: 'Repayment' },
+      ],
     },
   ]
 
   const addAnotherProperty = () => {
-    const id = uuidv4()
-    const newProperty = { ...methods.getValues(), id }
-
-    setProperties((prevResults) => [...prevResults, newProperty])
-    methods.setValue('propertyName', `Property ${properties.length + 2}`)
+    methods.handleSubmit(onSubmit)()
   }
 
-  React.useEffect(() => {
-    const onSubmit = (e) => {
-      setResults(sortByProfitability(properties))
-    }
-    methods.handleSubmit(onSubmit)()
-  }, [properties, methods, setResults])
+  const onSubmit = (data) => {
+    // const id = uuidv4()
+    data.id = uuidv4()
+    console.log(data)
+    // const newProperty = { ...methods.getValues(), id }
 
-  // const handleSubmit = (e) => {
-  //   methods.handleSubmit(onSubmit)()
-  // }
+    setProperties((prevResults) => [...prevResults, data])
+    // methods.setValue('propertyName', `Property ${properties.length + 2}`)
+    setResults(sortByProfitability(properties))
+  }
+
+  // React.useEffect(() => {
+
+  // }, [properties, methods, setResults])
 
   const onDelete = (ids) => {
     setResults((prevResults) =>
@@ -182,8 +228,8 @@ export default function App() {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen)
   }
-  console.log(expandView)
-  console.log('results', results)
+  // console.log(expandView)
+  // console.log('results', results)
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box>
@@ -211,23 +257,6 @@ export default function App() {
                     {inputs.map((input) => (
                       <NestedInput key={input.name} {...input} />
                     ))}
-                    <FormControl fullWidth sx={{ mb: 2 }}>
-                      <InputLabel id="demo-simple-select-label">
-                        Repayment Type
-                      </InputLabel>
-                      <Select
-                        {...methods.register('repaymentType')}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={age}
-                        size="small"
-                        label="Repayment type"
-                        onChange={handleChange}
-                      >
-                        <MenuItem value="interestOnly">Interest only</MenuItem>
-                        <MenuItem value="repayment">Repayment</MenuItem>
-                      </Select>
-                    </FormControl>
 
                     <Stack direction="row" spacing={2}>
                       <Button
@@ -240,17 +269,6 @@ export default function App() {
                       >
                         Add {properties?.length > 0 && properties?.length}
                       </Button>
-                      {/* <Button
-                    size="small"
-                    disableElevation
-                    type="submit"
-                    variant="contained"
-                    color="secondary"
-                    sx={{ mt: 3, mb: 2 }}
-                    onClick={handleSubmit}
-                  >
-                    Calculate
-                  </Button> */}
                     </Stack>
                   </Box>
                 </Box>
