@@ -71,10 +71,6 @@ export default function App() {
   })
 
   const { watch, setValue } = methods
-  // const [age, setAge] = React.useState('repayment')
-  // const handleChange = (event) => {
-  //   setAge(event.target.value)
-  // }
   const propertyValue = watch('propertyValue')
   const deposit = watch('deposit')
   React.useEffect(() => {
@@ -168,10 +164,15 @@ export default function App() {
     {
       name: 'mortgageTerm',
       text: 'Mortgage term',
-      type: 'number',
-      inputMode: 'numeric',
-      component: 'input',
+      type: 'text',
+      inputMode: 'text',
+      component: 'select',
       required: 'This field is required',
+      options: [
+        { value: 2, label: '2' },
+        { value: 3, label: '3' },
+        { value: 5, label: '5' },
+      ],
     },
     {
       name: 'repaymentType',
@@ -202,9 +203,9 @@ export default function App() {
     setResults(sortByProfitability(properties))
   }
 
-  // React.useEffect(() => {
-
-  // }, [properties, methods, setResults])
+  React.useEffect(() => {
+    setOpen(false)
+  }, [properties])
 
   const onDelete = (ids) => {
     setResults((prevResults) =>

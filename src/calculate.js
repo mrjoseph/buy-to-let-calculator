@@ -139,16 +139,14 @@ export const sortByProfitability = (properties) =>
       yearly: profitAfterExpensesYearly,
       annualProfitPercentage,
       totalInvestment,
-    } = calculateProfitAfterExpenses(property, property.mortgageTerm)
+    } = calculateProfitAfterExpenses(
+      property,
+      parseInt(property.mortgageTerm, 10)
+    )
     const ltv = calculateLTV(property)
     const averageAnnualROI = calculateAverageAnnualROI(property, 1)
     const stampDuty = calculateStampDuty(property.propertyValue)
 
-    console.log(
-      'invest plus stanp duty',
-      totalInvestment,
-      stampDuty.STAMP_DUTY_TO_PAY
-    )
     return {
       annualRentalIncome: parseInt(annualRentalIncome),
       rentalYield: rentalYield.toFixed(1),

@@ -47,17 +47,15 @@ export const NestedInput = ({
                   id={name}
                   type={type}
                   required
-                  autoFocus
                 />
               </FormControl>
             )
           case 'select':
             return (
               <FormControl fullWidth sx={{ mb: 2 }}>
-                <InputLabel id="demo-simple-select-label">{text}</InputLabel>
+                <InputLabel id={name}>{text}</InputLabel>
                 <Select
                   size="small"
-                  {...field}
                   {...register(name, {
                     required,
                   })}
@@ -65,7 +63,7 @@ export const NestedInput = ({
                   // helperText={
                   //   formState.errors[name] ? formState.errors[name].message : ''
                   // }
-                  labelId="demo-simple-select-label"
+                  labelId={name}
                   label={text}
                   disabled={disabled}
                   inputProps={{
@@ -75,7 +73,7 @@ export const NestedInput = ({
                   id={name}
                   type={type}
                   required
-                  autoFocus
+                  {...field}
                 >
                   {options.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
