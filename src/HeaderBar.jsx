@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton'
 import { useMediaQuery } from '@mui/material'
 import CalculateIcon from '@mui/icons-material/Calculate'
 import AddIcon from '@mui/icons-material/Add'
+import Avatar from '@mui/material/Avatar'
 export default function HeaderBar({ setOpen }) {
   const isSmallScreen = useMediaQuery('(max-width:900px)')
   return (
@@ -30,13 +31,25 @@ export default function HeaderBar({ setOpen }) {
           )}
 
           <Box>
-            <Button
-              color="secondary"
-              variant="contained"
-              onClick={() => setOpen(true)}
-            >
-              {!isSmallScreen ? <>Add property</> : <AddIcon />}
-            </Button>
+            {!isSmallScreen ? (
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={() => setOpen(true)}
+              >
+                Add property
+              </Button>
+            ) : (
+              <IconButton
+                aria-label="icon-button"
+                size="large"
+                onClick={() => setOpen(true)}
+              >
+                <Avatar sx={{ bgcolor: 'secondary.main' }}>
+                  <AddIcon /> {/* Your icon component */}
+                </Avatar>
+              </IconButton>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
