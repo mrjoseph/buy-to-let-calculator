@@ -205,7 +205,7 @@ export default function App() {
   React.useEffect(() => {
     setOpen(false)
     setResults(sortByProfitability(properties))
-  }, [properties])
+  }, [properties, setResults])
 
   const onDelete = (ids) => {
     setResults((prevResults) =>
