@@ -32,7 +32,7 @@ export const PropertyCard = ({ property, closeView }) => {
         </Typography> */}
 
       <Grid container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={12}>
           {' '}
           {/* 1st column */}
           <Typography
@@ -93,7 +93,7 @@ export const PropertyCard = ({ property, closeView }) => {
             </ListItem>
           </List>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={12}>
           {' '}
           {/* 2nd column */}
           <Typography
@@ -151,7 +151,7 @@ export const PropertyCard = ({ property, closeView }) => {
             </ListItem>
           </List>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={12}>
           {' '}
           {/* 3rd column */}
           <Typography
@@ -246,7 +246,7 @@ export const PropertyCard = ({ property, closeView }) => {
             </ListItem>
           </List>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item md={3} xs={12}>
           {' '}
           {/* 4th column */}
           <Typography

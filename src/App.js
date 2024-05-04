@@ -44,7 +44,7 @@ function Copyright(props) {
 const defaultTheme = createTheme({
   palette: {
     background: {
-      default: '#e7e7e7', // Change this to your desired background color
+      default: '#ffffff', // Change this to your desired background color
     },
   },
 })
@@ -200,11 +200,11 @@ export default function App() {
 
     setProperties((prevResults) => [...prevResults, data])
     // methods.setValue('propertyName', `Property ${properties.length + 2}`)
-    setResults(sortByProfitability(properties))
   }
 
   React.useEffect(() => {
     setOpen(false)
+    setResults(sortByProfitability(properties))
   }, [properties])
 
   const onDelete = (ids) => {
@@ -269,13 +269,22 @@ export default function App() {
                       >
                         Add {properties?.length > 0 && properties?.length}
                       </Button>
+                      <Button
+                        disableElevation
+                        size="small"
+                        variant="outlined"
+                        sx={{ mt: 3, mb: 2 }}
+                        onClick={toggleDrawer(false)}
+                      >
+                        Cancel
+                      </Button>
                     </Stack>
                   </Box>
                 </Box>
               </Container>
             </DrawerSlider>
           </FormProvider>
-          {/* <InputTable properties={properties} handleDelete={onDelete} /> */}
+
           <HeaderBar setOpen={setOpen} />
 
           {expandView.id ? (
