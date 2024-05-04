@@ -4,7 +4,7 @@ import Drawer from '@mui/material/Drawer'
 
 export const DrawerSlider = ({ children, toggleDrawer, open }) => {
   const DrawerList = (
-    <Box sx={{ width: 550, p: 2 }} role="presentation">
+    <Box sx={{ width: '100%', p: 2 }} role="presentation">
       {children}
     </Box>
   )

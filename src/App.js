@@ -2,6 +2,7 @@ import * as React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
+import { useMediaQuery } from '@mui/material'
 
 import Link from '@mui/material/Link'
 
@@ -23,6 +24,7 @@ import Stack from '@mui/material/Stack'
 import { PropertyCard } from './PropertyCard'
 import { useAppState } from './localstorage'
 import HeaderBar from './HeaderBar'
+
 function Copyright(props) {
   return (
     <Typography
@@ -228,8 +230,53 @@ export default function App() {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen)
   }
-  // console.log(expandView)
-  // console.log('results', results)
+  const isSmallScreen = useMediaQuery('(max-width:600px)') // Adjust the breakpoint as needed
+  const InputForm = () => (
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <HouseRoundedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Add Property
+        </Typography>
+        <Box component="div" sx={{ mt: 2 }}>
+          {inputs.map((input) => (
+            <NestedInput key={input.name} {...input} />
+          ))}
+
+          <Stack direction="row" spacing={2}>
+            <Button
+              disableElevation
+              size="small"
+              type="submit"
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={addAnotherProperty}
+            >
+              Add {properties?.length > 0 && properties?.length}
+            </Button>
+            <Button
+              disableElevation
+              size="small"
+              variant="outlined"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={toggleDrawer(false)}
+            >
+              Cancel
+            </Button>
+          </Stack>
+        </Box>
+      </Box>
+    </Container>
+  )
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box>
@@ -237,51 +284,20 @@ export default function App() {
 
         <Box>
           <FormProvider {...methods}>
-            <DrawerSlider toggleDrawer={toggleDrawer} open={open}>
-              <Container component="main" maxWidth="xs">
-                <Box
-                  sx={{
-                    marginTop: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    <HouseRoundedIcon />
-                  </Avatar>
-                  <Typography component="h1" variant="h5">
-                    Add Property
-                  </Typography>
-                  <Box component="div" sx={{ mt: 2 }}>
-                    {inputs.map((input) => (
-                      <NestedInput key={input.name} {...input} />
-                    ))}
-
-                    <Stack direction="row" spacing={2}>
-                      <Button
-                        disableElevation
-                        size="small"
-                        type="submit"
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                        onClick={addAnotherProperty}
-                      >
-                        Add {properties?.length > 0 && properties?.length}
-                      </Button>
-                      <Button
-                        disableElevation
-                        size="small"
-                        variant="outlined"
-                        sx={{ mt: 3, mb: 2 }}
-                        onClick={toggleDrawer(false)}
-                      >
-                        Cancel
-                      </Button>
-                    </Stack>
-                  </Box>
-                </Box>
-              </Container>
+            <DrawerSlider
+              toggleDrawer={toggleDrawer}
+              open={open}
+              variant={isSmallScreen ? 'temporary' : 'permanent'} // Use temporary variant for small screens
+              ModalProps={{ keepMounted: true }} // Keep the drawer mounted for smoother transitions
+              sx={{
+                width: isSmallScreen ? '100vw' : 600, // Set width to full screen on small screens
+                flexShrink: 0,
+                '& .MuiDrawer-paper': {
+                  width: isSmallScreen ? '100vw' : 600, // Set width to full screen on small screens
+                },
+              }}
+            >
+              <InputForm />
             </DrawerSlider>
           </FormProvider>
 
